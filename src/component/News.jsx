@@ -2,6 +2,7 @@ import React from 'react';
 import { BsShare } from 'react-icons/bs';
 import { FaStar, FaEye } from 'react-icons/fa';
 import { IoBookmarkOutline } from 'react-icons/io5';
+import { Link } from 'react-router';
 
 const News = ({ news }) => {
   const {
@@ -10,6 +11,7 @@ const News = ({ news }) => {
     total_view,
     author,
     thumbnail_url,
+    id,
     
     details,
   } = news;
@@ -57,7 +59,7 @@ const News = ({ news }) => {
         {details.length > 180 ? (
           <>
             {details.slice(0, 180)}...
-            <span className="text-orange-600 font-medium cursor-pointer"> Read More</span>
+            <Link to={`/news-details/${id}`} className="text-orange-600 font-medium cursor-pointer"> Read More</Link>
           </>
         ) : (
           details

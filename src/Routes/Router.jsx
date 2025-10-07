@@ -3,6 +3,11 @@ import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/home";
 import Categories from "../Pages/CategoryNews";
 import CategoryNews from "../Pages/CategoryNews";
+import Authlayout from "../Layouts/Authlayout";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import NewsDetails from "../Pages/newsDetails";
+import PrivetRouters from "../provider/PrivetRouters";
 
  const router = createBrowserRouter([
   {
@@ -23,11 +28,22 @@ import CategoryNews from "../Pages/CategoryNews";
   },
   {
     path: "/auth",
-    element: <div>authentication</div>,
+    Component: Authlayout,
+    children: [
+      {
+        path:"/auth/login",
+        Component:Login
+      },
+      {
+        path:"/auth/register",
+        Component:Register
+      }
+    ]
   },
   {
-    path: "/news",
-    element: <div>Hello i am news</div>,
+    path: "/news-details/:id",
+    element:<PrivetRouters><NewsDetails></NewsDetails></PrivetRouters>,
+    loader: () => fetch('/news.json')
   },
   {
     path: "/*",
